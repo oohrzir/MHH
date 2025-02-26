@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>學測轉科大分數計算器</title>
+    <script>
+        function calculateScore() {
+            let subjects = ['chinese', 'english', 'mathA', 'mathB', 'social', 'science'];
+            let totalWeightedScore = 0;
+            let totalWeight = 0;
+            
+            subjects.forEach(subject => {
+                let score = parseFloat(document.getElementById(subject).value) || 0;
+                let weight = parseFloat(document.getElementById(subject + '_weight').value) || 0;
+                totalWeightedScore += score * weight;
+                totalWeight += weight;
+            });
+            
+            let result = (totalWeightedScore / (15 * totalWeight)) * 100;
+            document.getElementById('result').innerText = '計算結果: ' + result.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h2>學測轉科大分數計算器</h2>
+    <table>
+        <tr>
+            <th>科目</th>
+            <th>學測級分</th>
+            <th>權重</th>
+        </tr>
+        <tr>
+            <td>國文</td>
+            <td><input type="number" id="chinese" min="0" max="15"></td>
+            <td><input type="number" id="chinese_weight" min="0"></td>
+        </tr>
+        <tr>
+            <td>英文</td>
+            <td><input type="number" id="english" min="0" max="15"></td>
+            <td><input type="number" id="english_weight" min="0"></td>
+        </tr>
+        <tr>
+            <td>數學A</td>
+            <td><input type="number" id="mathA" min="0" max="15"></td>
+            <td><input type="number" id="mathA_weight" min="0"></td>
+        </tr>
+        <tr>
+            <td>數學B</td>
+            <td><input type="number" id="mathB" min="0" max="15"></td>
+            <td><input type="number" id="mathB_weight" min="0"></td>
+        </tr>
+        <tr>
+            <td>社會</td>
+            <td><input type="number" id="social" min="0" max="15"></td>
+            <td><input type="number" id="social_weight" min="0"></td>
+        </tr>
+        <tr>
+            <td>自然</td>
+            <td><input type="number" id="science" min="0" max="15"></td>
+            <td><input type="number" id="science_weight" min="0"></td>
+        </tr>
+    </table>
+    <button onclick="calculateScore()">計算</button>
+    <p id="result"></p>
+</body>
+</html>
